@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name_icon">春晖学府</string>
+    <string name="app_name">春晖学府</string>
+    <string name="book_local">本地</string>
+    <string name="book_know">认识</string>
+    <string name="book_teaching">教材</string>
+    <string name="book_my">我的</string>
+
+    <string name="title_activity_readbook">ReadbookActivity</string>
+    <string name="dummy_button">Dummy Button</string>
+    <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_load_book">LoadBookActivity</string>
+    <string name="action_settings">Settings</string>
+</resources>

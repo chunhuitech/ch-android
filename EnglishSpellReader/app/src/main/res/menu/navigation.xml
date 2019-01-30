@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/ic_dashboard_black_24dp"
+        android:title="@string/book_local" />
+    <item
+        android:id="@+id/navigation_know"
+        android:icon="@drawable/ic_notification_know"
+        android:title="@string/book_know"
+        app:showAsAction="withText" />
+
+    <item
+        android:id="@+id/navigation_teaching"
+        android:icon="@drawable/ic_notification_teaching"
+        android:title="@string/book_teaching"
+        app:showAsAction="withText" />
+
+    <item
+        android:id="@+id/navigation_notifications"
+        android:icon="@drawable/ic_notification_my"
+        android:title="@string/book_my" />
+
+</menu>
