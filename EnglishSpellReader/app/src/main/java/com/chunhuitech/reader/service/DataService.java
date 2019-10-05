@@ -1,17 +1,23 @@
 package com.chunhuitech.reader.service;
 
+import android.util.Log;
+
 import com.chunhuitech.reader.App;
 import com.chunhuitech.reader.callback.IDownloadCallback;
 import com.chunhuitech.reader.callback.ILoadDataCallback;
 import com.chunhuitech.reader.config.ServerConfig;
 import com.chunhuitech.reader.entity.BaseConverterFactory;
 import com.chunhuitech.reader.entity.BaseResult;
+import com.chunhuitech.reader.entity.ProductActivity;
+import com.google.gson.Gson;
 
+import okhttp3.RequestBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+
 
 public class DataService {
 
@@ -25,6 +31,31 @@ public class DataService {
                 .build();
 
         iDataService = this.retrofit.create(IDataService.class);
+    }
+
+    public void addStartupEvent(String clientFlag, String osinfo, String ip, String netIp, String area) {
+//        Call<ResponseBody> call = iDataService.addStartupEvent("test_clientFlag","PointReading", "1.0.0",
+//                Long.valueOf(5), "android", "start-up");
+
+
+        ProductActivity info=new ProductActivity(Long.valueOf(0),clientFlag,"PointReading", "1.0.0",
+                Long.valueOf(5), osinfo, "start-up", ip, netIp, area); /*** 利用Gson 将对象转json字符串*/
+        Gson gson=new Gson();
+        String obj=gson.toJson(info);
+        RequestBody body=RequestBody.create(okhttp3.MediaType.parse("application/json; charset=utf-8"),obj);
+        Call<ResponseBody> call = iDataService.addStartupEvent(body);
+
+        call.enqueue(new Callback<ResponseBody>() {
+            @Override
+            public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                Log.v("start", "success");
+            }
+
+            @Override
+            public void onFailure(Call<ResponseBody> call, Throwable t) {
+                Log.e("start event error:", t.getMessage());
+            }
+        });
     }
 
     public Object getChildren(int id, final ILoadDataCallback iLoadDataCallback) {

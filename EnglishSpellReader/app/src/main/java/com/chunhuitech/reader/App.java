@@ -12,7 +12,7 @@ import com.chunhuitech.reader.service.SoundService;
 import com.chunhuitech.reader.storage.StoreCache;
 
 // 应用类
-public class App {
+public class                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              App {
 
     private NetService netService;
     private MessageService messageService;

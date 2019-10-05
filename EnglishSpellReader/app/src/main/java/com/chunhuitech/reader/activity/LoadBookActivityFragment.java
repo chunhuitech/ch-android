@@ -47,6 +47,8 @@ public class LoadBookActivityFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         half = getArguments().getString("half");
+        //int page = Integer.valueOf(getArguments().getString("page")).intValue();
+        //half = page % 2 == 0 ? "left" : "right";
         View view = inflater.inflate(R.layout.fragment_load_book, container, false);
         imageView = view.findViewById(R.id.page_image);
         toolTipText = view.findViewById(R.id.text_tooltip);
@@ -114,11 +116,13 @@ public class LoadBookActivityFragment extends Fragment {
                 float[] values = new float[10];
                 m.getValues(values);
                 int offsetY = (int) values[5];
+                int x = (int)event.getX();
+                int y = (int)event.getY() - offsetY;
 
                 int selectIndex = -1;
                 if (listRects != null) {
                     for(int i=0;i<listRects.size();i++) {
-                        if (listRects.get(i).contains((int)event.getX(), (int)event.getY() - offsetY)) {
+                        if (listRects.get(i).contains(x, y)) {
                             selectIndex = i;
                         }
                     }

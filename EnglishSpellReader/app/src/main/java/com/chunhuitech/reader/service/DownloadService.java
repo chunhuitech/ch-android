@@ -31,7 +31,7 @@ public class DownloadService {
 
     public void beginDownloadResource(String bookId, List<Map<String, Object>> listResource) {
         if (listResource != null && listResource.size() > 0) {
-            Map<String, Object> resObj = listResource.get(1);
+            Map<String, Object> resObj = listResource.get(0);
             String id = resObj.get("id").toString();
             final String url = resObj.get("relativePath").toString();
             final File resFile = storeCache.getResFile(bookId, id);

@@ -24,14 +24,17 @@ public class BookPageAdapter extends FragmentPagerAdapter {
     @Override
     public Fragment getItem(int i) {
         Fragment currentFragment = mFragmentList.get(i);
-        int listIndex = (int)Math.floor(i/2);
+        int listIndex = i; //(int)Math.floor(i/2);
+
         Map<String, Object> data = listPageData.get(listIndex);
+        //int page = Integer.valueOf(data.get("page").toString()).intValue();
         Bundle bundle = new Bundle();
         bundle.putString("bookId", bookId);
         bundle.putString("id", data.get("id").toString());
         bundle.putString("page", data.get("page").toString());
         bundle.putString("imageUrl", data.get("imageUrl").toString());
         bundle.putString("half", i % 2 == 0 ? "left" : "right");
+        //bundle.putString("half", page % 2 == 0 ? "left" : "right");
         currentFragment.setArguments(bundle);
         return currentFragment;
     }

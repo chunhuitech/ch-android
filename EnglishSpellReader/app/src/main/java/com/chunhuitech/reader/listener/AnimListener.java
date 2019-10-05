@@ -15,10 +15,18 @@ public class AnimListener implements Animator.AnimatorListener {
         this.selectObj = selectObj;
     }
 
-    @Override
-    public void onAnimationEnd(Animator animation, boolean isReverse) {
-
-    }
+//    @Override
+//    public void onAnimationEnd(Animator animation, boolean isReverse) {
+//        if (selectObj != null) {
+//            String resourceId = selectObj.get("resourceId").toString();
+//            String bookId = App.instanceApp().getBookInfo().getBookId();
+//            StoreCache storeCache = App.instanceApp().getStoreCache();
+//            File mp3File = storeCache.getResFile(bookId, resourceId);
+//            if (mp3File.exists()) {
+//                App.instanceApp().getSoundService().playMp3(mp3File, selectObj);
+//            }
+//        }
+//    }
 
     @Override
     public void onAnimationStart(Animator animation) {

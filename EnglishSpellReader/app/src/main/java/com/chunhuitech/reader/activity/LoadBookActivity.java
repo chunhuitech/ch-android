@@ -63,7 +63,7 @@ public class LoadBookActivity extends AppCompatActivity {
                     fragmentList = new ArrayList<>();
                     for(int i=0; i<listPages.size(); i++) {
                         fragmentList.add(new LoadBookActivityFragment());
-                        fragmentList.add(new LoadBookActivityFragment());
+                        //fragmentList.add(new LoadBookActivityFragment());
                     }
                     mcContainer.setAdapter(new BookPageAdapter(getSupportFragmentManager(), fragmentList, listPages, bookId));
                 }
