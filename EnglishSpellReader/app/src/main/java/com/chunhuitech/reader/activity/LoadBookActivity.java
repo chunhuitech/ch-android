@@ -50,7 +50,7 @@ public class LoadBookActivity extends AppCompatActivity {
                 if (data != null) {
                     List<Map<String, Object>> listResource = (List<Map<String, Object>>) data.getData().get("dataList");
                     App.instanceApp().getBookInfo().setListResource(listResource);
-                    App.instanceApp().getDownloadService().beginDownloadResource(bookId, listResource);
+                    App.instanceApp().getDownloadService().beginDownloadResource(bookId, listResource, null);
                 }
             }
         });

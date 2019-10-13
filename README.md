@@ -3,6 +3,12 @@ chunhui android client
 
 默认文件存放相关路径
 /storage/emulated/0/Android/data/com.chunhuitech.reader/files/Documents/
+mp3文件保存地址：
+/storage/emulated/0/Android/data/com.chunhuitech.reader/files/Documents/1264/res/12
+
+Android图标生成
+File->New->Image Asset
+Android 8.0应用图标适配&mipmap-anydpi-v26
 
 图片资源要求：
 两页合并一张  

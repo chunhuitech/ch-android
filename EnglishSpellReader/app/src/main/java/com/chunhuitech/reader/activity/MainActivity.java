@@ -71,6 +71,7 @@ public class MainActivity extends AppCompatActivity {
                     mListChildren.setVisibility(View.INVISIBLE);
                     mTextMessage.setVisibility(View.VISIBLE);
                     mImageView.setVisibility(View.VISIBLE);
+                    mImageView.setImageResource(R.drawable.qrcode_for_gh_a87a03c354b8_1280);
                     return true;
                 case R.id.navigation_know:
                     mTextMessage.setVisibility(View.INVISIBLE);
@@ -87,7 +88,8 @@ public class MainActivity extends AppCompatActivity {
                 case R.id.navigation_notifications:
                     mListChildren.setVisibility(View.INVISIBLE);
                     mTextMessage.setVisibility(View.VISIBLE);
-                    mImageView.setVisibility(View.INVISIBLE);
+                    mImageView.setVisibility(View.VISIBLE);
+                    mImageView.setImageResource(R.drawable.qrcode_for_friend);
                     mTextMessage.setText(R.string.book_my);
                     return true;
             }

@@ -5,7 +5,7 @@
     <item
         android:id="@+id/navigation_home"
         android:icon="@drawable/ic_dashboard_black_24dp"
-        android:title="@string/book_local" />
+        android:title="本地" />
     <item
         android:id="@+id/navigation_know"
         android:icon="@drawable/ic_notification_know"
@@ -21,6 +21,6 @@
     <item
         android:id="@+id/navigation_notifications"
         android:icon="@drawable/ic_notification_my"
-        android:title="@string/book_my" />
+        android:title="我的" />
 
 </menu>
