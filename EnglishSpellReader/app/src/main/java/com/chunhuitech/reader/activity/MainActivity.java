@@ -6,12 +6,10 @@ import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
-import android.net.wifi.WifiInfo;
-import android.net.wifi.WifiManager;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.content.ContextCompat;
@@ -21,9 +19,11 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.chunhuitech.reader.App;
 import com.chunhuitech.reader.R;
@@ -53,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
     private TextView mTextMessage;
     private ImageView mImageView;
     private ListView mListChildren;
+    private Button mBtnVerCheck;
     private String area;
     private static String[] platforms = {
             "https://pv.sohu.com/cityjson",
@@ -72,17 +73,20 @@ public class MainActivity extends AppCompatActivity {
                     mTextMessage.setVisibility(View.VISIBLE);
                     mImageView.setVisibility(View.VISIBLE);
                     mImageView.setImageResource(R.drawable.qrcode_for_gh_a87a03c354b8_1280);
+                    mBtnVerCheck.setVisibility(View.INVISIBLE);
                     return true;
                 case R.id.navigation_know:
                     mTextMessage.setVisibility(View.INVISIBLE);
                     mListChildren.setVisibility(View.VISIBLE);
                     mImageView.setVisibility(View.INVISIBLE);
+                    mBtnVerCheck.setVisibility(View.INVISIBLE);
                     initListView(1100);
                     return true;
                 case R.id.navigation_teaching:
                     mTextMessage.setVisibility(View.INVISIBLE);
                     mListChildren.setVisibility(View.VISIBLE);
                     mImageView.setVisibility(View.INVISIBLE);
+                    mBtnVerCheck.setVisibility(View.INVISIBLE);
                     initListView(1200);
                     return true;
                 case R.id.navigation_notifications:
@@ -90,6 +94,7 @@ public class MainActivity extends AppCompatActivity {
                     mTextMessage.setVisibility(View.VISIBLE);
                     mImageView.setVisibility(View.VISIBLE);
                     mImageView.setImageResource(R.drawable.qrcode_for_friend);
+                    mBtnVerCheck.setVisibility(View.VISIBLE);
                     mTextMessage.setText(R.string.book_my);
                     return true;
             }
@@ -111,6 +116,8 @@ public class MainActivity extends AppCompatActivity {
         mTextMessage = (TextView) findViewById(R.id.message);
         mListChildren = (ListView) findViewById(R.id.listChildren);
         mImageView = (ImageView) findViewById(R.id.chpic);
+        mBtnVerCheck = (Button) findViewById(R.id.btnvercheck);
+        mBtnVerCheck.setVisibility(View.INVISIBLE);
         BottomNavigationView navigation = (BottomNavigationView) findViewById(R.id.navigation);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
@@ -128,6 +135,30 @@ public class MainActivity extends AppCompatActivity {
         }
         String netIp =getOutNetIP(this,0);
         App.instanceApp().getDataService().addStartupEvent(szImei, osInfo, ip, netIp, area);
+
+        mBtnVerCheck.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                App.instanceApp().getDataService().getVersionInfo(new ILoadDataCallback() {
+                    @Override
+                    public void loadFinish(BaseResult data) {
+                        Integer versionNum = Integer.valueOf(data.getData().get("versionNum").toString());
+                        if(versionNum > 10000) {
+                            String downAddress = data.getData().get("downAddress").toString();
+                            Intent intent = new Intent();
+                            intent.setAction("android.intent.action.VIEW");
+                            Uri apk_url = Uri.parse(downAddress);
+                            intent.setData(apk_url);
+                            startActivity(intent);//打开浏览器
+                        } else {
+                            Toast.makeText(MainActivity.this,
+                                    "已经是最新版本", Toast.LENGTH_SHORT).show();
+                        }
+
+                    }
+                });
+            }
+        });
     }
     public String getOutNetIP(Context context, int index) {
         if (index < platforms.length) {

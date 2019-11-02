@@ -21,7 +21,7 @@ public interface IDataService {
     Call<BaseResult> getChildren(@Query("id") int id);
 
     @GET("api/admin/api/record/get")
-    Call<BaseResult> getBookPages(@Query("classId") String bookId,
+    Call<BaseResult>  getBookPages(@Query("classId") String bookId,
                                   @Query("limit") Integer pageSize,
                                   @Query("page") Integer currentPage);
 
@@ -47,5 +47,12 @@ public interface IDataService {
 //    Call<ResponseBody> addStartupEvent(@Field("clientFlag") String clientFlag, @Field("procName") String procName, @Field("procVersion") String procVersion,
 //                                       @Field("procId") Long procId, @Field("os") String os, @Field("eventName") String eventName);
     Call<ResponseBody> addStartupEvent(@Body RequestBody productActivity);
+
+
+    @Headers({
+            "Content-Type: application/json;charset=UTF-8",
+            "User-Agent: Retrofit-your-App"})
+    @POST("api/admin/api/prodinfo/versioncheck")
+    Call<BaseResult> getVersionInfo(@Body RequestBody productInfo);
 
 }
