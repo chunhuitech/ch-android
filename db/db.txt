@@ -1,0 +1,71 @@
+CREATE TABLE `comm_classification` (
+  `id` int(11) NOT NULL PRIMARY KEY,
+  `cn_name` varchar(100) NOT NULL,
+  `en_name` varchar(50) NOT NULL ,
+  `parent_id` int(11) NOT NULL,
+  `show_flag` tinyint(4) NOT NULL DEFAULT '1' ,
+  `leaf` tinyint(4) NOT NULL DEFAULT '0',
+  `class_data_type` int(11) NOT NULL DEFAULT '00000000001' ,
+  `sort_num` int(11) NOT NULL DEFAULT '0',
+  `status` tinyint(4) NOT NULL DEFAULT '0' ,
+  `des` varchar(200) NOT NULL DEFAULT ' ',
+  `modify_time` bigint(20) NOT NULL,
+  `create_time` bigint(20) NOT NULL
+)
+
+
+CREATE TABLE `comm_resource` (
+  `id` int(11) NOT NULL PRIMARY KEY,
+  `class_id` int(11) NOT NULL ,
+  `sort_num` int(11) NOT NULL DEFAULT '0',
+  `title` varchar(100) NOT NULL,
+  `label` varchar(50) NOT NULL,
+  `relative_path` varchar(256) NOT NULL DEFAULT '',
+  `file_size` int(11) NOT NULL,
+  `file_type` varchar(50) NOT NULL ,
+  `status` tinyint(4) NOT NULL DEFAULT '0' ,
+  `modify_time` bigint(20) NOT NULL,
+  `create_time` bigint(20) NOT NULL
+)
+
+CREATE TABLE `comm_record` (
+  `id` int(11) NOT NULL PRIMARY KEY,
+  `class_id` int(11) NOT NULL,
+  `sort_num` int(11) NOT NULL DEFAULT '0',
+  `title` varchar(100) NOT NULL,
+  `label` varchar(50) NOT NULL,
+  `relative_path` varchar(256) NOT NULL DEFAULT '',
+  `file_size` int(11) NOT NULL,
+  `file_type` varchar(50) NOT NULL ,
+  `content_html` varchar(4096) NOT NULL DEFAULT '',
+  `content_plain` varchar(2048) NOT NULL DEFAULT '',
+  `status` tinyint(4) NOT NULL DEFAULT '0' ,
+  `modify_time` bigint(20) NOT NULL,
+  `create_time` bigint(20) NOT NULL
+) 
+
+CREATE TABLE `comm_point_read_block` (
+  `id` int(11) NOT NULL PRIMARY KEY,
+  `record_id` int(11) NOT NULL ,
+  `resource_id` int(11) NOT NULL ,
+  `sort_num` int(11) NOT NULL DEFAULT '0',
+  `left_position` int(11) NOT NULL DEFAULT '0',
+  `top_position` int(11) NOT NULL DEFAULT '0',
+  `width` int(11) NOT NULL DEFAULT '0',
+  `height` int(11) NOT NULL DEFAULT '0',
+  `begin_point` int(11) NOT NULL DEFAULT '0' ,
+  `end_point` int(11) NOT NULL DEFAULT '0',
+  `title` varchar(300) NOT NULL ,
+  `text` varchar(300) NOT NULL ,
+  `status` tinyint(4) NOT NULL DEFAULT '0' ,
+  `modify_time` bigint(20) NOT NULL,
+  `create_time` bigint(20) NOT NULL
+)
+
+导出的数据\' 改为 ''
+查询后导出，如：
+select * from comm_record where class_id=1264
+select * from comm_point_read_block where resource_id in(12,13,14,15,16,17)
+
+
+/data/user/0/com.chunhuitech.reader/databases/chunhuidiandu.db
