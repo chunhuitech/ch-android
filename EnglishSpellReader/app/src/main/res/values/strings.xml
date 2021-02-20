@@ -2,6 +2,7 @@
     <string name="app_name_icon">春晖学府</string>
     <string name="app_name">春晖学府</string>
     <string name="book_local">关注公众号，获取更多资源...</string>
+    <string name="book_local_course">本地课程</string>
     <string name="book_know">认识</string>
     <string name="book_teaching">教材</string>
     <string name="book_my">扫码加微信好友</string>

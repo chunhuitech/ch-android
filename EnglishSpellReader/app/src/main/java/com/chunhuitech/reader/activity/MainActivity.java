@@ -75,6 +75,15 @@ public class MainActivity extends AppCompatActivity {
                     mImageView.setImageResource(R.drawable.qrcode_for_gh_a87a03c354b8_1280);
                     mBtnVerCheck.setVisibility(View.INVISIBLE);
                     return true;
+                case R.id.navigation_course:
+                    Intent startIntent = new Intent(MainActivity.this, LoadBookActivity.class);
+                    startIntent.putExtra("bookCnName", "英语 上海教育出版社-五年级(上)");
+                    startIntent.putExtra("page", 1);
+                    startIntent.putExtra("localLoad", 1);
+                    App.instanceApp().getBookInfo().setBookId("1264");
+                    startActivity(startIntent);
+                    return true;
+
                 case R.id.navigation_know:
                     mTextMessage.setVisibility(View.INVISIBLE);
                     mListChildren.setVisibility(View.VISIBLE);
@@ -122,6 +131,7 @@ public class MainActivity extends AppCompatActivity {
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
         String szImei = getDeviceId(this);
+        App.instanceApp().getDBLocalQuery().init(this);
         String pad = "No";
         if(isPad(this)) {
             pad = "Yes";

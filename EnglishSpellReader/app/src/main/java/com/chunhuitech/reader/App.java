@@ -9,6 +9,7 @@ import com.chunhuitech.reader.service.DownloadService;
 import com.chunhuitech.reader.service.MessageService;
 import com.chunhuitech.reader.service.NetService;
 import com.chunhuitech.reader.service.SoundService;
+import com.chunhuitech.reader.storage.DBLocalQuery;
 import com.chunhuitech.reader.storage.StoreCache;
 
 // 应用类
@@ -22,6 +23,7 @@ public class                                                                    
     private BookInfo bookInfo;
     private DownloadService downloadService;
     private SoundService soundService;
+    private DBLocalQuery dbLocalQuery;
 
     public Activity getCurrentActivity() {
         return currentActivity;
@@ -70,12 +72,17 @@ public class                                                                    
         return storeCache;
     }
 
+    public DBLocalQuery getDBLocalQuery() {
+        return dbLocalQuery;
+    }
+
     private App() {
         this.netService = new NetService();
         this.messageService = new MessageService();
         this.dataService = new DataService();
         this.bookInfo = new BookInfo();
         this.soundService = new SoundService();
+        this.dbLocalQuery = new DBLocalQuery();
     }
 
     private static App app = null;

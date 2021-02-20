@@ -25,6 +25,7 @@ public class LoadBookActivity extends AppCompatActivity {
     String bookCnName;
     String bookId;
     int startPage ;
+    int localLoad;
     ViewPager mcContainer;
     private List<Fragment> fragmentList;
 
@@ -37,12 +38,15 @@ public class LoadBookActivity extends AppCompatActivity {
 
         bookCnName = getIntent().getStringExtra("bookCnName");
         startPage = getIntent().getIntExtra("page", 0);
+        localLoad = getIntent().getIntExtra("localLoad", 0);
         bookId = App.instanceApp().getBookInfo().getBookId();
 
         setContentView(R.layout.activity_loadbook);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         toolbar.setTitle(bookCnName);
         setSupportActionBar(toolbar);
+
+        List<Map<String, Object>> listPages = (List<Map<String, Object>>)  App.instanceApp().getDBLocalQuery().getBookPages(bookId, startPage).getData();
 
         App.instanceApp().getDataService().getBookResource(bookId, new ILoadDataCallback() {
             @Override
